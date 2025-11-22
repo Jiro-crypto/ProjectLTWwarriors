@@ -154,44 +154,93 @@ namespace ProjectLTWwarriors.Controllers
 
         public ActionResult iPhone()
         {
-            ViewBag.Message = "Your contact page.";
+            // Lấy tất cả sản phẩm từ DB (đã map sẵn trong ProductData)
+            var allProducts = ProductData.GetAllProducts();
 
-            return View();
+            // Chỉ lấy những sản phẩm thuộc Category "iPhone"
+            var iphone = _db.Products
+                            .Include(p => p.ProductImages)
+                            .Where(p => p.Status == "active" && // chỉ lấy những sản phẩm còn active
+                                        p.Categories.Name == "iPhone") //lấy sản phẩm Iphone trong catagory
+                            .ToList();
+
+            return View(iphone);   // truyền list sản phẩm qua View
         }
 
         public ActionResult Mac()
         {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
+            // Lấy tất cả sản phẩm từ DB (đã map sẵn trong ProductData)
+            var allProducts = ProductData.GetAllProducts();
+
+            // Chỉ lấy những sản phẩm thuộc Category "Mac"
+            var mac = _db.Products
+                            .Include(p => p.ProductImages)
+                            .Where(p => p.Status == "active" && // chỉ lấy những sản phẩm còn active
+                                        p.Categories.Name == "Mac") //lấy sản phẩm Mac trong catagory
+                            .ToList();
+
+            return View(mac);   // truyền list sản phẩm qua View
         }
 
         public ActionResult iPad()
         {
-            ViewBag.Message = "Your contact page.";
+            // Lấy tất cả sản phẩm từ DB (đã map sẵn trong ProductData)
+            var allProducts = ProductData.GetAllProducts();
 
-            return View();
+            // Chỉ lấy những sản phẩm thuộc Category "iPad"
+            var ipad = _db.Products
+                            .Include(p => p.ProductImages)
+                            .Where(p => p.Status == "active" && // chỉ lấy những sản phẩm còn active
+                                        p.Categories.Name == "iPad") //lấy sản phẩm iPad trong catagory
+                            .ToList();
+
+            return View(ipad);   // truyền list sản phẩm qua View
         }
 
         public ActionResult Watch()
         {
-            ViewBag.Message = "Your contact page.";
+            // Lấy tất cả sản phẩm từ DB (đã map sẵn trong ProductData)
+            var allProducts = ProductData.GetAllProducts();
 
-            return View();
+            // Chỉ lấy những sản phẩm thuộc Category "Watch"
+            var watch = _db.Products
+                            .Include(p => p.ProductImages)
+                            .Where(p => p.Status == "active" && // chỉ lấy những sản phẩm còn active
+                                        p.Categories.Name == "Watch") //lấy sản phẩm Watch trong catagory
+                            .ToList();
+
+            return View(watch);   // truyền list sản phẩm qua View
         }
 
         public ActionResult TaiNghe_Loa()
         {
-            ViewBag.Message = "Your contact page.";
+            // Lấy tất cả sản phẩm từ DB (đã map sẵn trong ProductData)
+            var allProducts = ProductData.GetAllProducts();
 
-            return View();
+            // Chỉ lấy những sản phẩm thuộc Category "TaiNghe_Loa"
+            var tainghe_loa = _db.Products
+                            .Include(p => p.ProductImages)
+                            .Where(p => p.Status == "active" && // chỉ lấy những sản phẩm còn active
+                                        p.Categories.Name == "TaiNghe_Loa") //lấy sản phẩm TaINghe_Loa trong catagory
+                            .ToList();
+
+            return View(tainghe_loa);   // truyền list sản phẩm qua View
         }
 
         public ActionResult PhuKien()
         {
-            ViewBag.Message = "Your contact page.";
+            // Lấy tất cả sản phẩm từ DB (đã map sẵn trong ProductData)
+            var allProducts = ProductData.GetAllProducts();
 
-            return View();
+            // Chỉ lấy những sản phẩm thuộc Category "PhuKien"
+            var phukien = _db.Products
+                            .Include(p => p.ProductImages)
+                            .Where(p => p.Status == "active" && // chỉ lấy những sản phẩm còn active
+                                        p.Categories.Name == "PhuKien") //lấy sản phẩm PhuKien trong catagory
+                            .ToList();
+
+            return View(phukien);   // truyền list sản phẩm qua View
         }
 
         public ActionResult Welcome()

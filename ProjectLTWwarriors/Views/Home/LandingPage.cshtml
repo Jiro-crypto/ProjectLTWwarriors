@@ -288,20 +288,6 @@
 
     <a class="Banner" href="@Url.Action("LandingPage", "Home")"></a>
 
-    @* FORM TÌM KIẾM – giống Index bên TH *@
-    @using (Html.BeginForm("LandingPage", "Home", FormMethod.Get))
-    {
-        <div class="form-inline" style="margin: 15px 0;">
-            @Html.TextBoxFor(m => m.SearchTerm, new
-            {
-                @class = "form-control",
-                placeholder = "Nhập tên, mô tả hoặc danh mục sản phẩm...",
-                style = "width: 320px; margin-right: 8px;"
-            })
-            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-        </div>
-    }
-
     @* GIỐNG CẤU TRÚC BÊN TH: DÙNG PARTIAL *@
 
     @* 1. Sản phẩm nổi bật *@
