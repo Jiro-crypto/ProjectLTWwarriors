@@ -1,0 +1,34 @@
+﻿@model ProjectLTWwarriors.Models.ViewModel.HomeProductVM
+
+@if (Model.FeaturedProducts != null && Model.FeaturedProducts.Any())
+{
+    <div class="Bo_Khung_San_Pham">
+        <p class="Bo_Khung_San_Pham_Title">SẢN PHẨM NỔI BẬT</p>
+
+        <div class="Danh_Sach_San_Pham">
+            @foreach (var p in Model.FeaturedProducts)
+            {
+                <div class="The_San_Pham">
+                    <a href="@Url.Action("ProductDetail", "Home", new { id = p.Id })">
+
+                        @{
+                            var img = p.ProductImages
+                                       .OrderByDescending(i => i.IsPrimary)
+                                       .FirstOrDefault();
+                            var imgUrl = img != null
+                                ? Url.Content(img.ImageUrl)
+                                : Url.Content("~/Content/no-image.png");
+                        }
+
+                        <img class="TheSanPham_HinhAnh" src="@imgUrl" />
+
+                        <p class="TheSanPham_TenThietBi">@p.Name</p>
+                        <p class="TheSanPham_Gia">@String.Format("{0:N0} đ", p.Price)</p>
+
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+}
+

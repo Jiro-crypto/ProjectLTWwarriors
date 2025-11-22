@@ -1,0 +1,104 @@
+﻿@using ProjectLTWwarriors.Models
+
+@{
+    // Lấy user đang đăng nhập từ Session
+    var currentUser = Session["CurrentUser"] as Users;
+}
+
+<link href="~/Content/Header.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+<header class="header-wrapper">
+    <div class="Header">
+        <a href="/Home/LandingPage" class="Logo">LTWarriors</a>
+
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <nav class="Nav">
+            <ul>
+                <li><a href="/Home/iPhone" class="NavText">iPhone</a></li>
+                <li><a href="/Home/Mac" class="NavText">Mac</a></li>
+                <li><a href="/Home/iPad" class="NavText">iPad</a></li>
+                <li><a href="/Home/Watch" class="NavText">Watch</a></li>
+                <li><a href="/Home/TaiNghe_Loa" class="NavText">Tai nghe</a></li>
+                <li><a href="/Home/PhuKien" class="NavText">Phụ kiện</a></li>
+            </ul>
+        </nav>
+
+        <div class="Search">
+            <i class="fa-solid fa-magnifying-glass SearchIcon"></i>
+            <input type="text" placeholder="..." />
+        </div>
+
+        <!-- GIỎ HÀNG -->
+        <div class="gio-hang">
+            <a href="@Url.Action("XemGioHang","Home")" class="nav-link">
+                <i class="fas fa-shopping-cart cart-icon"></i>
+                <span id="cart-count" class="badge bg-danger">0</span>
+            </a>
+        </div>
+
+        <!-- USER / LOGIN -->
+        @if (currentUser != null)
+        {
+            <div class="user-box">
+                <i class="fa-regular fa-circle-user cart-icon"></i>
+                <span class="user-name">@currentUser.FullName</span>
+                <a href="@Url.Action("Logout", "Home")" class="logout-link">Đăng xuất</a>
+            </div>
+        }
+        else
+        {
+            <div>
+                <a href="@Url.Action("SignIn","Home")">
+                    <i class="fa-regular fa-circle-user cart-icon"></i>
+                </a>
+            </div>
+        }
+    </div>
+
+    <style>
+        .badge {
+            display: inline-block;
+            min-width: 20px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            background: #dc3545;
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .user-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .user-name {
+            font-weight: 500;
+        }
+
+        .logout-link {
+            color: #f97316;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+            .logout-link:hover {
+                text-decoration: underline;
+            }
+    </style>
+</header>
+
+<script>
+    function toggleMenu() {
+        var ul = document.querySelector('.Nav ul');
+        if (ul) {
+            ul.classList.toggle('show');
+        }
+    }
+</script>
