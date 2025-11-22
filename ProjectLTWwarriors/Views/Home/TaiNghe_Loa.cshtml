@@ -1,4 +1,5 @@
-﻿
+﻿@model List<ProjectLTWwarriors.Models.Products>
+
 @{
     ViewBag.Title = "TaiNghe_Loa";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,41 +12,23 @@
         <a class="Banner"></a>
 
         <div class="Danh_Sach_San_Pham">
-            <div class="The_San_Pham">
-                <a href="@Url.Action("ProductDetail", "Home", new { id = 17 })">
-                    <img class="TheSanPham_HinhAnh" src="~/images_LandingPage/tai-nghe-co-day-apple-mtjy3-thumb-650x650.png" />
-                    <p class="TheSanPham_TenThietBi">EarPods jack cắm USB-C</p>
-                    <p class="TheSanPham_Gia">540.000đ</p>
-                </a>
+            @foreach (var p in Model)
+            {
+                // Lấy 1 hình đại diện (nếu có bảng ProductImages)
+                var imgUrl = p.ProductImages != null && p.ProductImages.Any()
+                    ? p.ProductImages.FirstOrDefault().ImageUrl
+                    : "~/images_LandingPage/no-image.png";
 
-            </div>
-
-            <div class="The_San_Pham">
-                <a href="@Url.Action("ProductDetail", "Home", new { id = 18 })">
-                    <img class="TheSanPham_HinhAnh" src="~/images_LandingPage/airpods-4-thumb-1-650x650.png" />
-                    <p class="TheSanPham_TenThietBi">AirPods 4</p>
-                    <p class="TheSanPham_Gia">3.590.000đ</p>
-                </a>
-
-            </div>
-
-            <div class="The_San_Pham">
-                <a href="@Url.Action("ProductDetail", "Home", new { id = 19 })">
-                    <img class="TheSanPham_HinhAnh" src="~/images_LandingPage/tai-nghe-bluetooth-airpods-pro-2nd-gen-usb-c-charge-apple-thumb-12-1-650x650.png" />
-                    <p class="TheSanPham_TenThietBi">AirPods Pro (2nd Gen) USB-C</p>
-                    <p class="TheSanPham_Gia">5.590.000đ</p>
-                </a>
-
-            </div>
-
-            <div class="The_San_Pham">
-                <a href="@Url.Action("ProductDetail", "Home", new { id = 20 })">
-                    <img class="TheSanPham_HinhAnh" src="~/images_LandingPage/loa-bluetooth-marshall-emberton-iii-650x650.png" />
-                    <p class="TheSanPham_TenThietBi">Loa Bluetooth Marshall Emberton III</p>
-                    <p class="TheSanPham_Gia">4.450.000đ</p>
-                </a>
-
-            </div>
+                <div class="The_San_Pham">
+                    <a href="@Url.Action("ProductDetail", "Home", new { id = p.Id })">
+                        <img class="TheSanPham_HinhAnh" src="@Url.Content(imgUrl)" />
+                        <p class="TheSanPham_TenThietBi">@p.Name</p>
+                        <p class="TheSanPham_Gia">
+                            @string.Format("{0:N0}đ", p.Price)
+                        </p>
+                    </a>
+                </div>
+            }
         </div>
 
     </div>

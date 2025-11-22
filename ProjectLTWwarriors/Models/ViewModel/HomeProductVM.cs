@@ -11,7 +11,7 @@ namespace ProjectLTWwarriors.Models.ViewModel
         public string SearchTerm { get; set; }
 
         public int PageNumber { get; set; }
-        public int PageSize { get; set; } = 8;
+        public int PageSize { get; set; } = 5;
 
         public List<Products> FeaturedProducts { get; set; }
 

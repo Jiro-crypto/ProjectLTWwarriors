@@ -28,8 +28,14 @@
         </nav>
 
         <div class="Search">
-            <i class="fa-solid fa-magnifying-glass SearchIcon"></i>
-            <input type="text" placeholder="..." />
+            @using (Html.BeginForm("LandingPage", "Home", FormMethod.Get))
+            {
+                <i class="fa-solid fa-magnifying-glass SearchIcon"></i>
+                <input type="text"
+                       name="searchTerm"
+                       placeholder="Tìm kiếm sản phẩm..."
+                       class="search-input" />
+            }
         </div>
 
         <!-- GIỎ HÀNG -->
@@ -91,6 +97,15 @@
             .logout-link:hover {
                 text-decoration: underline;
             }
+
+        .search-input {
+            border: none;
+            outline: none;
+            padding-left: 8px;
+            font-size: 14px;
+            width: 350px;
+            background: transparent;
+        }
     </style>
 </header>
 

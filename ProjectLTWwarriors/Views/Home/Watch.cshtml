@@ -1,4 +1,5 @@
-﻿
+﻿@model List<ProjectLTWwarriors.Models.Products>
+
 @{
     ViewBag.Title = "Watch";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,41 +12,23 @@
         <a class="Banner"></a>
 
         <div class="Danh_Sach_San_Pham">
-            <div class="The_San_Pham">
-                <a href="@Url.Action("ProductDetail", "Home", new { id = 13 })">
-                    <img class="TheSanPham_HinhAnh" src="~/images_LandingPage/apple-watch-series-11-42mm-vien-nhom-day-the-thao-vang-hong-thumb-650x650.png" />
-                    <p class="TheSanPham_TenThietBi">Apple Watch Series 11 GPS 42mm viền nhôm dây thể thao </p>
-                    <p class="TheSanPham_Gia">11.490.000đ</p>
-                </a>
+            @foreach (var p in Model)
+            {
+                // Lấy 1 hình đại diện (nếu có bảng ProductImages)
+                var imgUrl = p.ProductImages != null && p.ProductImages.Any()
+                    ? p.ProductImages.FirstOrDefault().ImageUrl
+                    : "~/images_LandingPage/no-image.png";
 
-            </div>
-
-            <div class="The_San_Pham">
-                <a href="@Url.Action("ProductDetail", "Home", new { id = 14 })">
-                    <img class="TheSanPham_HinhAnh" src="~/images_LandingPage/apple-watch-series-11-46mm-vien-nhom-day-the-thao-den-thumb-650x650.png" />
-                    <p class="TheSanPham_TenThietBi">Apple Watch Series 11 GPS 46mm viền nhôm dây thể thao</p>
-                    <p class="TheSanPham_Gia">12.350.000đ</p>
-                </a>
-
-            </div>
-
-            <div class="The_San_Pham">
-                <a href="@Url.Action("ProductDetail", "Home", new { id = 15 })">
-                    <img class="TheSanPham_HinhAnh" src="~/images_LandingPage/apple-watch-series-11-gps-cellular-vien-nhom-day-the-thao-vang-hong-thumb-650x650.png" />
-                    <p class="TheSanPham_TenThietBi">Apple Watch Series 11 GPS + Cellular 42mm viền nhôm dây thể thao</p>
-                    <p class="TheSanPham_Gia">14.490.000đ</p>
-                </a>
-
-            </div>
-
-            <div class="The_San_Pham">
-                <a href="@Url.Action("ProductDetail", "Home", new { id = 16 })">
-                    <img class="TheSanPham_HinhAnh" src="~/images_LandingPage/apple-watch-series-11-gps-cellular-vien-nhom-day-the-thao-xam-thumb-1-650x650.png" />
-                    <p class="TheSanPham_TenThietBi">Apple Watch Series 11 GPS + Cellular 46mm viền nhôm dây thể thao</p>
-                    <p class="TheSanPham_Gia">15.350.000đ</p>
-                </a>
-
-            </div>
+                <div class="The_San_Pham">
+                    <a href="@Url.Action("ProductDetail", "Home", new { id = p.Id })">
+                        <img class="TheSanPham_HinhAnh" src="@Url.Content(imgUrl)" />
+                        <p class="TheSanPham_TenThietBi">@p.Name</p>
+                        <p class="TheSanPham_Gia">
+                            @string.Format("{0:N0}đ", p.Price)
+                        </p>
+                    </a>
+                </div>
+            }
         </div>
 
     </div>
